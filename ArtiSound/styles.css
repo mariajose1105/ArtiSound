@@ -1,0 +1,265 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #fff;
+}
+
+/* Barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background-color: #000; /* Fondo negro de la barra */
+}
+
+.navbar h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.navbar nav a {
+    margin-left: 1.5rem;
+    color: #bfbfbf;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.navbar nav a:hover {
+    color: #ffffff;
+}
+
+/* Sección principal (Hero) */
+.hero {
+    text-align: center;
+    padding: 6rem 2rem;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: #bfbfbf;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.hero button {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hero button:hover {
+    background-color: #ffffff;
+}
+
+/* Estilos para la pantalla de registro */
+.register-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+    color: #fff;
+}
+
+.register-box {
+    background-color: #333;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.register-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.register-box p {
+    font-size: 0.9rem;
+    color: #bfbfbf;
+    margin-bottom: 1.5rem;
+}
+
+.register-box button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.register-box button:first-of-type {
+    background-color: #000;
+    color: #fff;
+}
+
+.register-box button:nth-of-type(2),
+.register-box button:nth-of-type(3) {
+    background-color: #fff;
+    color: #000;
+}
+
+.register-box a {
+    color: #bfbfbf;
+    text-decoration: none;
+}
+
+.register-box a:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para la pantalla de inicio de sesión */
+.login-overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+    color: #fff;
+}
+
+.login-box {
+    background-color: #333;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.login-box p {
+    font-size: 0.9rem;
+    color: #bfbfbf;
+    margin-bottom: 1.5rem;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-box button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+}
+
+.login-box button:hover {
+    background-color: #444;
+}
+
+.login-box a {
+    color: #bfbfbf;
+    text-decoration: none;
+}
+
+.login-box a:hover {
+    text-decoration: underline;
+}
+
+/* Ventana emergente de soporte */
+.soporte-overlay {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Fondo oscuro */
+    z-index: 1000;
+}
+
+.soporte-box {
+    background-color: #333;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    color: #fff;
+}
+
+.soporte-box h2 {
+    margin-bottom: 1rem;
+}
+
+.soporte-box ul {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.soporte-box ul li {
+    margin-bottom: 0.5rem;
+}
+
+.soporte-box a {
+    color: #0af;
+    text-decoration: none;
+}
+
+.soporte-box a:hover {
+    text-decoration: underline;
+}
+
+.soporte-box button {
+    background-color: #0af;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.soporte-box button:hover {
+    background-color: #08d;
+}

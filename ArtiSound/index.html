@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtiSound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <header>
+        <div class="navbar">
+            <h1>ArtiSound</h1>
+            <nav>
+                <a href="javascript:void(0);" id="soporteBtn">Soporte</a>
+                <!-- Enlace para abrir el formulario de Iniciar sesión -->
+                <a href="javascript:void(0);" id="ingresaBtn">Ingresa</a>
+                <a href="registro.html">Regístrate</a>
+            </nav>
+            
+        </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main>
+        <section class="hero">
+            <h2>REGÍSTRATE Y CONOCE NUEVOS TALENTOS</h2>
+            <p>Registra y conoce nuevos talentos, arte y espacios para dar a conocer tu contenido</p>
+            <!-- Botón principal con nuevo texto -->
+            <button>Busca y Disfruta</button>
+        </section>
+    </main>
+
+     <!-- Ventana emergente de Soporte -->
+     <div class="soporte-overlay" id="soporteOverlay">
+        <div class="soporte-box">
+            <h2>¿Necesitas ayuda?</h2>
+            <p>Estamos aquí para ayudarte. Escoge una opción:</p>
+            <ul>
+                <li>📧 Escríbenos a: <strong>soporte@artisound.com</strong></li>
+                <li>📞 Llámanos: <strong>+57 123 456 7890</strong></li>
+                <li>📚 Consulta nuestras <a href="#">Preguntas Frecuentes</a></li>
+            </ul>
+            <button onclick="cerrarSoporte()">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Ventana emergente de inicio de sesión -->
+    <div class="login-overlay" id="loginOverlay">
+        <div class="login-box">
+            <h2>Inicia sesión</h2>
+            <p>Accede a tus recursos, disfruta de los mejores contenidos y conecta con artistas.</p>
+            <!-- Formulario para iniciar sesión -->
+            <form action="#" method="POST">
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+            <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>.</p>
+            <p>Al continuar, aceptas los <a href="#">términos de servicio</a> y la <a href="#">política de privacidad</a>.</p>
+            <!-- Botón para cerrar la ventana -->
+            <button onclick="cerrarLogin()">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        // Función para mostrar la ventana de soporte
+        document.getElementById('soporteBtn').onclick = function() {
+            document.getElementById('soporteOverlay').style.display = 'flex';
+        };
+
+        // Función para cerrar la ventana de soporte
+        function cerrarSoporte() {
+            document.getElementById('soporteOverlay').style.display = 'none';
+        }
+
+
+        // Función para mostrar la ventana de inicio de sesión
+        document.getElementById('ingresaBtn').onclick = function() {
+            document.getElementById('loginOverlay').style.display = 'flex';
+        }
+
+        // Función para cerrar la ventana de inicio de sesión
+        function cerrarLogin() {
+            document.getElementById('loginOverlay').style.display = 'none';
+        }
+    </script>
+
+<script>
+    // Función para mostrar la ventana de inicio de sesión
+    document.getElementById('ingresaBtn').onclick = function() {
+        document.getElementById('loginOverlay').style.display = 'flex';
+    }
+
+    // Función para cerrar la ventana de inicio de sesión
+    function cerrarLogin() {
+        document.getElementById('loginOverlay').style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
