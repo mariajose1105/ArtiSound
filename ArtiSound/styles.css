@@ -263,3 +263,133 @@ body {
 .soporte-box button:hover {
     background-color: #08d;
 }
+
+/* Fondo para la ventana emergente */
+.form-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenedor del formulario */
+.form-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Estilo de los campos */
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Botones */
+.form-box button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Grupo de casillas */
+.checkbox-group {
+    text-align: left;
+    margin: 10px 0;
+}
+
+/* Enlace para regresar */
+.regresar {
+    display: block;
+    margin-top: 10px;
+    color: #0a0b0b;
+    text-decoration: none;
+}
+
+.regresar:hover {
+    text-decoration: underline;
+}
+
+label {
+    color: #000; /* Cambia al color que desees */
+    font-size: 14px; /* Ajusta el tamaño de la fuente si es necesario */
+}
+
+/* Estilo general para los botones del formulario */
+#formOverlay button {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    border: none; /* Sin bordes */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Cambia el color al pasar el mouse */
+#formOverlay button:hover {
+    background-color: #333; /* Gris oscuro al pasar el mouse */
+}
+
+/* Estilo para el encabezado */
+header {
+    position: relative;
+}
+
+/* Estilo para el encabezado */
+header {
+    position: relative;
+}
+
+/* Fondo gris debajo del navbar */
+.navbar-bg {
+    background-color: #f0f0f0; /* Color gris claro */
+    height: 20px; /* Altura del rectángulo */
+    width: 100%; /* Que ocupe todo el ancho */
+    position: absolute;
+    bottom: -20px; /* Alinea el rectángulo con el borde inferior del navbar */
+    z-index: -1; /* Envía el rectángulo al fondo */
+}
+
+/* Ajustes para la barra de navegación */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #262525; /* Fondo blanco para el navbar */
+    border-bottom: 1px solid #222222; /* Línea sutil para separar */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #333;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    color: #000;
+}
+
