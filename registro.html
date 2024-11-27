@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - ArtiSound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="register-overlay">
+        <div class="register-box">
+            <h2>¿Ya te registraste? Inicia sesión</h2>
+            <p>Acceso gratuito ilimitado a nuestros recursos. Regístrate para ver más.</p>
+            
+            <!-- Botón para iniciar el formulario -->
+            <button id="continuarCorreo">Continuar con el correo</button>
+            
+            <!-- Botón para iniciar sesión con Google -->
+            <button id="googleSignInButton">Continuar con Google</button>
+            
+            <p>Al continuar, aceptas los <a href="#">términos de servicio</a> y la <a href="#">política de privacidad</a>.</p>
+            <a href="index.html" class="regresar">Volver a la pantalla principal</a>
+        </div>
+    </div>
+
+    <!-- Este es el lugar donde Google aparecerá cuando se haga clic en el botón -->
+    <div id="g_id_signin" class="g_id_signin" data-type="standard" style="display:none;"></div>
+
+    <!-- Formulario emergente de registro -->
+    <div class="form-overlay" id="formOverlay" style="display: none;">
+        <div class="form-box">
+            <h2>Regístrate</h2>
+            <!-- El formulario ahora envía datos al servidor backend -->
+            <form action="http://localhost:3000/register" method="POST">
+                <!-- Campos de información personal -->
+                <input type="text" name="firstName" placeholder="Primer nombre" required>
+                <input type="text" name="lastName" placeholder="Primer apellido" required>
+                <input type="email" name="email" placeholder="Correo electrónico" required>
+                
+                <div class="phone-group">
+                    <select name="countryCode" required>
+                        <option value="+57">+57 (Colombia)</option>
+                        <option value="+1">+1 (EE.UU.)</option>
+                        <option value="+52">+52 (México)</option>
+                    </select>
+                    <input type="tel" name="phone" placeholder="Número de teléfono" required>
+                </div>
+                
+                <input type="password" name="password" placeholder="Contraseña" required>
+                
+                <!-- Casillas de aceptación -->
+                <div class="terms">
+                    <label>
+                        <input type="checkbox" name="aceptar_terminos" required>
+                        Al crear una cuenta, acepto nuestros Términos de uso y 
+                        Política de privacidad
+                    </label>
+
+                    <label>
+                        <input type="checkbox" name="aceptar_correo" required>
+                        Al crear una cuenta, también doy mi consentimiento para recibir 
+                        correos electrónicos.
+                    </label>
+                </div>
+                
+                <!-- Botones de acción -->
+                <button type="submit">Registrarse</button>
+                <button type="button" onclick="cerrarFormulario()">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        // Manejo del login de Google
+        function handleCredentialResponse(response) {
+            console.log("ID Token: ", response.credential);
+            // Aquí podrías manejar el token (como enviarlo a tu servidor o verificar la autenticación)
+            alert("Inicio de sesión exitoso con Google.");
+        }
+
+        // Inicialización de Google Identity Services
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: "304282106689-pjhmctsjpvavsjhvi0okgu47r2caj0dr.apps.googleusercontent.com", // Reemplaza con tu Client ID
+                callback: handleCredentialResponse,
+            });
+
+            // Asociar el botón "Continuar con Google" para mostrar el selector de cuentas
+            document.getElementById("googleSignInButton").onclick = function () {
+                // Reinicia el flujo de autenticación antes de mostrar el selector de cuentas
+                google.accounts.id.disableAutoSelect(); // Desactiva la selección automática de cuenta
+                google.accounts.id.prompt(); // Muestra el selector de cuentas
+            };
+        };
+
+        // Lógica para el formulario emergente de registro
+        document.getElementById('continuarCorreo').onclick = function () {
+            document.getElementById('formOverlay').style.display = 'flex';
+        };
+
+        function cerrarFormulario() {
+            document.getElementById('formOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

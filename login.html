@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - ArtiSound</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="login-overlay">
+        <div class="login-box">
+            <h2>Inicia sesión</h2>
+            <p>Accede a tus recursos, disfruta de los mejores contenidos y conecta con artistas.</p>
+            <!-- Formulario para iniciar sesión -->
+            <form id="login-form">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar sesión</button>
+            </form>
+            
+            <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>.</p>
+            <p>Al continuar, aceptas los <a href="#">términos de servicio</a> y la <a href="#">política de privacidad</a>.</p>
+
+            <!-- Mensajes de error -->
+            <p id="error-message" style="color: red; display: none;"></p>
+        </div>
+    </div>
+
+    <script>
+        // Captura el formulario y el elemento de error
+        const form = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+
+        // Maneja el envío del formulario
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();  // Evita que el formulario se envíe tradicionalmente
+
+            // Obtén los valores del formulario
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Realiza la solicitud fetch
+                const response = await fetch('http://localhost:5000/login', { // Asegúrate de usar la URL correcta de tu servidor
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (!response.ok) {
+                    // Si la respuesta no es correcta, muestra el mensaje de error
+                    const error = await response.text();
+                    errorMessage.textContent = `Hubo un problema: ${error}`;
+                    errorMessage.style.display = 'block';
+                } else {
+                    // Si todo va bien, redirige al usuario o muestra un mensaje de éxito
+                    const successMessage = await response.text();
+                    alert('Inicio de sesión exitoso');
+                    // Redirige o realiza cualquier otra acción aquí
+                    window.location.href = 'pagina_principal.html'; // Reemplaza con tu página de inicio
+                }
+            } catch (error) {
+                console.error('Error al hacer la solicitud:', error);
+                errorMessage.textContent = 'Error al intentar iniciar sesión.';
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
