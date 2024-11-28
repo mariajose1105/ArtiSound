@@ -1,5 +1,5 @@
 // Obtener el formulario de registro con correo
-const form = document.getElementById('email_register_form').addEventListener('submit', async (event) => {
+const form = document.getElementById('loginForm').addEventListener('submit', async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.target);
@@ -10,7 +10,7 @@ const form = document.getElementById('email_register_form').addEventListener('su
 
     try {
         // Realizar la solicitud POST
-        const response = await fetch("http://localhost:5000/emailRegister", {
+        const response = await fetch("http://localhost:5000/login", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -24,7 +24,7 @@ const form = document.getElementById('email_register_form').addEventListener('su
             try {
                 const data = await response.json(); // Intentar obtener el JSON
                 console.log('Respuesta del servidor: ', data); // Mostrar los datos
-                window.location.href = './home.html?uid=' + data.id;
+                window.location.href = './home.html';
             } catch (error) {
                 console.error('Error al parsear JSON:', error);
                 console.log('Respuesta cruda del servidor:', await response.text());
