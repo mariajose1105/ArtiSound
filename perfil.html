@@ -1,0 +1,435 @@
+<html>
+ <head>
+  <title>
+   Perfil - Josue
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+        }
+        .profile-header {
+            background-color: #444;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+        .profile-info img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 20px;
+        }
+        .profile-info h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .profile-info p {
+            margin: 5px 0 0 0;
+            font-size: 18px;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        .search-bar input {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .main-content h2 {
+            margin: 0 0 10px 0;
+            font-size: 24px;
+        }
+        .main-content p {
+            margin: 0 0 20px 0;
+            color: #aaa;
+        }
+        .artists {
+            display: flex;
+            justify-content: space-between;
+        }
+        .artist {
+            text-align: center;
+        }
+        .artist img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .artist p {
+            margin: 0;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #666;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #444;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            color: #fff;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal input[type="text"], .modal input[type="email"], .modal input[type="password"], .modal input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .modal button {
+            background-color: #888;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal button:hover {
+            background-color: #666;
+        }
+        .stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .stats div {
+            text-align: center;
+        }
+        .stats i {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="profile-header">
+   <div class="profile-info">
+    <img alt="Profile picture of Josue" height="100" id="profileImage" src="https://storage.googleapis.com/a1aa/image/FnFckQ9M1sIsGBAWtJXLFf8bwVdbFVefFOfzBYyautgC0eseE.jpg" width="100"/>
+    <div>
+     <h1 id="profileName">
+      Josue
+     </h1>
+     <p>
+      • 18 siguiendo
+     </p>
+    </div>
+   </div>
+   <div class="search-bar">
+    <i class="fas fa-bars" style="margin-right: 10px;">
+    </i>
+    <input placeholder="Buscar..." type="text"/>
+   </div>
+  </div>
+  <div class="main-content">
+   <div class="dropdown">
+    <span style="font-size: 24px;">...</span>
+    <div class="dropdown-content">
+     <a href="#" id="editProfileLink">
+      Editar perfil
+     </a>
+     <a href="#" id="changePasswordLink">
+      Cambiar contraseña
+     </a>
+     <a href="#" id="profileDetailsLink">
+      Detalles de perfil
+     </a>
+     <a href="#" id="viewStatsLink">
+      Ver estadísticas
+     </a>
+    </div>
+   </div>
+   <h2>
+    Artistas principales este mes
+   </h2>
+   <p>
+    Solo visibles para ti
+   </p>
+   <div class="artists">
+    <div class="artist">
+     <img alt="Profile picture of Catalina" height="100" src="img18.jpg" width="100"/>
+     <p>
+      Catalina
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="artist">
+     <img alt="Profile picture of Johan" height="100" src="https://storage.googleapis.com/a1aa/image/nSLKhDe9cFWedU9ftrIKCo6nCu7vPN6wMGTLgJkUXWO1ZPrnA.jpg" width="100"/>
+     <p>
+      Johan
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="artist">
+     <img alt="Profile picture of Maria Jose" height="100" src="img15.jpg" width="100"/>
+     <p>
+      Maria Jose
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="artist">
+     <img alt="Profile picture of Eduardo" height="100" src="img17.jpg" width="100"/>
+     <p>
+      Eduardo
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="artist">
+     <img alt="Profile picture of Sofia" height="100" src="img16.jpg" width="100"/>
+     <p>
+      Sofia
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+    <div class="artist">
+     <img alt="Profile picture of Andrei" height="100" src="https://storage.googleapis.com/a1aa/image/EjWUvxjz7yb4MhgnyDfmeryfJ6ajdBUxCxJdD1rSxJRqZPrnA.jpg" width="100"/>
+     <p>
+      Andrei
+     </p>
+     <p>
+      Artista
+     </p>
+    </div>
+   </div>
+  </div>
+
+  <div class="modal" id="editProfileModal">
+    <div class="modal-content">
+     <span class="close" id="closeEditProfileModal">&times;</span>
+     <h2>Editar perfil</h2>
+     <form id="editProfileForm">
+      <label for="name">Nombre:</label>
+      <input id="name" name="name" type="text" value="Josue"/>
+      <label for="email">Correo electrónico:</label>
+      <input id="email" name="email" type="email" value="josue@example.com"/>
+      <button type="submit">Guardar cambios</button>
+     </form>
+    </div>
+   </div>
+   <div class="modal" id="changePasswordModal">
+    <div class="modal-content">
+     <span class="close" id="closeChangePasswordModal">&times;</span>
+     <h2>Cambiar contraseña</h2>
+     <form id="changePasswordForm">
+      <label for="currentPassword">Contraseña actual:</label>
+      <input id="currentPassword" name="currentPassword" type="password"/>
+      <label for="newPassword">Nueva contraseña:</label>
+      <input id="newPassword" name="newPassword" type="password"/>
+      <label for="confirmPassword">Confirmar nueva contraseña:</label>
+      <input id="confirmPassword" name="confirmPassword" type="password"/>
+      <button type="submit">Cambiar contraseña</button>
+     </form>
+    </div>
+   </div>
+   <div class="modal" id="profileDetailsModal">
+    <div class="modal-content">
+     <span class="close" id="closeProfileDetailsModal">&times;</span>
+     <h2>Detalles de perfil</h2>
+     <form id="profileDetailsForm">
+      <label for="profileNameDetails">Nombre:</label>
+      <input id="profileNameDetails" name="profileNameDetails" type="text" value="Josue"/>
+      <label for="profileImageUpload">Cambiar foto de perfil:</label>
+      <input id="profileImageUpload" name="profileImageUpload" type="file"/>
+      <p>Aceptas darle acceso a Artisound a la imagen que decidas subir.</p>
+      <button type="submit">Guardar cambios</button>
+     </form>
+    </div>
+   </div>
+   <div class="modal" id="viewStatsModal">
+    <div class="modal-content">
+     <span class="close" id="closeViewStatsModal">&times;</span>
+     <h2>Ver estadísticas</h2>
+     <p>Puedes ver tus seguidores</p>
+     <p>Recuerda interactuar con tu cuenta para mantener tus seguidores</p>
+     <p>Analiza tus likes</p>
+     <p>A quienes les gusta tu contenido, dales buen contenido semanalmente</p>
+     <p>Tus funciones con seguidores y likes</p>
+     <p>Novedades sobre los seguidores nuevos y antiguos y los likes recientes de tus obras</p>
+     <div class="stats">
+      <div>
+       <i class="fas fa-user"></i>
+       <p>Seguidores </p>
+       <p>500 </p>
+      </div>
+      <div>
+       <i class="fas fa-heart"></i>
+       <p>Me gusta</p>
+       <p>2000</p>
+      </div>
+     </div>
+    </div>
+   </div>
+   <script>
+    var editProfileModal = document.getElementById("editProfileModal");
+         var changePasswordModal = document.getElementById("changePasswordModal");
+         var profileDetailsModal = document.getElementById("profileDetailsModal");
+         var viewStatsModal = document.getElementById("viewStatsModal");
+         var editProfileBtn = document.getElementById("editProfileLink");
+         var changePasswordBtn = document.getElementById("changePasswordLink");
+         var profileDetailsBtn = document.getElementById("profileDetailsLink");
+         var viewStatsBtn = document.getElementById("viewStatsLink");
+         var closeEditProfileModal = document.getElementById("closeEditProfileModal");
+         var closeChangePasswordModal = document.getElementById("closeChangePasswordModal");
+         var closeProfileDetailsModal = document.getElementById("closeProfileDetailsModal");
+         var closeViewStatsModal = document.getElementById("closeViewStatsModal");
+ 
+         editProfileBtn.onclick = function() {
+             editProfileModal.style.display = "block";
+         }
+ 
+         changePasswordBtn.onclick = function() {
+             changePasswordModal.style.display = "block";
+         }
+ 
+         profileDetailsBtn.onclick = function() {
+             profileDetailsModal.style.display = "block";
+         }
+ 
+         viewStatsBtn.onclick = function() {
+             viewStatsModal.style.display = "block";
+         }
+ 
+         closeEditProfileModal.onclick = function() {
+             editProfileModal.style.display = "none";
+         }
+ 
+         closeChangePasswordModal.onclick = function() {
+             changePasswordModal.style.display = "none";
+         }
+ 
+         closeProfileDetailsModal.onclick = function() {
+             profileDetailsModal.style.display = "none";
+         }
+ 
+         closeViewStatsModal.onclick = function() {
+             viewStatsModal.style.display = "none";
+         }
+ 
+         window.onclick = function(event) {
+             if (event.target == editProfileModal) {
+                 editProfileModal.style.display = "none";
+             }
+             if (event.target == changePasswordModal) {
+                 changePasswordModal.style.display = "none";
+             }
+             if (event.target == profileDetailsModal) {
+                 profileDetailsModal.style.display = "none";
+             }
+             if (event.target == viewStatsModal) {
+                 viewStatsModal.style.display = "none";
+             }
+         }
+ 
+         document.getElementById("editProfileForm").onsubmit = function(event) {
+             event.preventDefault();
+             var name = document.getElementById("name").value;
+             document.getElementById("profileName").innerText = name;
+             editProfileModal.style.display = "none";
+         }
+ 
+         document.getElementById("profileDetailsForm").onsubmit = function(event) {
+             event.preventDefault();
+             var name = document.getElementById("profileNameDetails").value;
+             document.getElementById("profileName").innerText = name;
+             var fileInput = document.getElementById("profileImageUpload");
+             if (fileInput.files && fileInput.files[0]) {
+                 var reader = new FileReader();
+                 reader.onload = function(e) {
+                     document.getElementById("profileImage").src = e.target.result;
+                 }
+                 reader.readAsDataURL(fileInput.files[0]);
+             }
+             profileDetailsModal.style.display = "none";
+         }
+   </script>
+ </body>
+</html>
+<!-- Contenido principal -->
+  <!--  </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="img01.jpg" alt="Perfil del Usuario" class="profile-pic">
+        <h2>Josue</h2>
+        <p>18 siguiendo</p>
+        <a href="#" class="btn">Editar Perfil</a>
+        <a href="#" class="btn">Detalles del Perfil</a>
+    </div>
+    <a href="indexx.html" class="return-button">⬅ Volver</a>
+
+    
+    
+</body>
+</html>-->

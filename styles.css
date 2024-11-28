@@ -403,3 +403,95 @@ header {
     width: 100%;
     max-width: 250px;
 }
+
+/*PERFIL*/
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #ffffff;
+}
+
+.header {
+    background-color: #3a3a3a;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.profile-info .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info .details h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.profile-info .details p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    background-color: #4a4a4a;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.main-content h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.main-content p {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    color: #b3b3b3;
+}
+
+.artists {
+    display: flex;
+    justify-content: space-between;
+}
+
+.artist {
+    text-align: center;
+}
+
+.artist img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.artist p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}
