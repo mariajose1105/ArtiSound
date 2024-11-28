@@ -139,35 +139,7 @@
             document.getElementById('loginOverlay').style.display = 'none';
         }
 
-        // Función para manejar el inicio de sesión
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault(); // Evita que el formulario recargue la página
-
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const message = await response.text();
-
-                if (response.ok) {
-                    alert('Inicio de sesión exitoso');
-                    cerrarLogin(); // Opcional: Cierra la ventana emergente
-                } else {
-                    alert(message);
-                }
-            } catch (error) {
-                console.error('Error en el inicio de sesión:', error);
-                alert('Hubo un problema al intentar iniciar sesión');
-            }
-        });
     </script>
+    <script src="./login.js" defer></script>
 </body>
 </html>
