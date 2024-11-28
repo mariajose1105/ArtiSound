@@ -33,11 +33,16 @@
         <div class="form-box">
             <h2>Regístrate</h2>
             <!-- El formulario ahora envía datos al servidor backend -->
-            <form action="http://localhost:3000/register" method="POST">
+            <form id="email_register_form">
                 <!-- Campos de información personal -->
                 <input type="text" name="firstName" placeholder="Primer nombre" required>
                 <input type="text" name="lastName" placeholder="Primer apellido" required>
                 <input type="email" name="email" placeholder="Correo electrónico" required>
+                <select name="account_type" name="account-type">
+                    <option value="0" disabled selected>Tipo de Cuenta</option>
+                    <option value="artist">Artista</option>
+                    <option value="listener">Oyente</option>
+                </select>
                 
                 <div class="phone-group">
                     <select name="countryCode" required>
@@ -105,6 +110,7 @@
             document.getElementById('formOverlay').style.display = 'none';
         }
     </script>
+    <script src="./registro.js" defer></script>
 </body>
 
 </html>

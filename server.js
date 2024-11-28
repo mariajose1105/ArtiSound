@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt'); // Para encriptar contraseñas
 const dotenv = require('dotenv'); // Para cargar variables de entorno
+const cors = require('cors')
 
 dotenv.config(); // Cargar archivo .env
 
@@ -16,14 +17,38 @@ const MONGO_URI = process.env.MONGO_URI;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Habilitar CORS para todas las solicitudes
+app.use(cors());
+
 // Conexión a MongoDB
 let db;
+let users;
 MongoClient.connect(MONGO_URI, { useUnifiedTopology: true })
     .then(client => {
         console.log('Conectado a MongoDB');
         db = client.db('ArtiSound'); // Base de datos llamada "ArtiSound"
+        users = db.collection('users');
     })
     .catch(error => console.error('Error al conectar a MongoDB:', error));
+
+// Encriptacion y Comparacion de Pwds
+async function encryptPwd(plainTextPassword) {
+    try {
+        let hashedPassword = await bcrypt.hash(plainTextPassword, 10);
+        return hashedPassword;
+    } catch (err) {
+        console.error("Error al encriptar la contraseña: ", err);
+    }
+}
+
+async function comparePwd(plainTextPassword, hashedPassword) {
+    try {
+        let result = await bcrypt.compare(plainTextPassword, hashedPassword);
+        return result;
+    } catch (error) {
+        console.error("Error al verificar la contraseña: ", error)
+    }
+}
 
 // Ruta para inicio de sesión
 app.post('/login', async (req, res) => {
@@ -60,7 +85,7 @@ app.post('/login', async (req, res) => {
 
 
 // Ruta para inicio de sesión
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     
     // Verifica que los datos lleguen correctamente al servidor
@@ -86,6 +111,38 @@ app.post('/login', (req, res) => {
             console.error(error);
             res.status(500).send('Error al iniciar sesión');
         });
+});
+
+
+// Ruta para registro con email
+app.post('/emailRegister', async (req, res) => {
+    const { email, firstName, lastName, password, phone } = req.body;
+
+    if (!email || !firstName || !lastName || !password || !phone) {
+        return res.status(400).send('Por favor, ingresa los datos requeridos');
+    }
+    try {
+        const user = await users.findOne({ email: email });
+        if (user) {
+            return res.status(400).send({ 'response': 'Usuario ya registrado.' });
+        }
+        // Hash de la contraseña
+        let hashedPwd = await encryptPwd(password);
+        // Inserción en la base de datos
+        const result = await users.insertOne({
+            email: email,
+            password: hashedPwd 
+        });
+
+        // Respuesta de éxito
+        res.status(201).json({
+            id: result.insertedId
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error al realizar el registro');
+    }
 });
 
 
