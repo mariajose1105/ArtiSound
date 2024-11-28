@@ -17,8 +17,15 @@ const MONGO_URI = process.env.MONGO_URI;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// CORS options
+const corsOptions = {
+    origin: '*',
+    methods: 'POST',
+    allowedHeaders: 'Content-Type, Authorization'
+}
+
 // Habilitar CORS para todas las solicitudes
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Conexión a MongoDB
 let db;
@@ -135,8 +142,8 @@ app.post('/emailRegister', async (req, res) => {
         });
 
         // Respuesta de éxito
-        res.status(201).json({
-            id: result.insertedId
+        res.status(201).send({
+            'id': result.insertedId
         });
 
     } catch (error) {
