@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - ArtiSound</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/platform.js?onload=initGoogleSignIn" async defer></script>
 </head>
 
 <body>
@@ -83,14 +84,15 @@
         function handleCredentialResponse(response) {
             console.log("ID Token: ", response.credential);
             // Aquí podrías manejar el token (como enviarlo a tu servidor o verificar la autenticación)
+            window.location.href = './home.html'
             alert("Inicio de sesión exitoso con Google.");
         }
 
         // Inicialización de Google Identity Services
         window.onload = function () {
             google.accounts.id.initialize({
-                client_id: "304282106689-pjhmctsjpvavsjhvi0okgu47r2caj0dr.apps.googleusercontent.com", // Reemplaza con tu Client ID
-                callback: handleCredentialResponse,
+                client_id: "799548820626-l7s7qa5g4c61tvnaj0788lelgk1k2trj.apps.googleusercontent.com", // Reemplaza con tu Client ID
+                callback: handleCredentialResponse, 
             });
 
             // Asociar el botón "Continuar con Google" para mostrar el selector de cuentas
