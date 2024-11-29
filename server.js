@@ -23,11 +23,13 @@ app.use(cors());
 // Conexión a MongoDB
 let db;
 let users;
+let googleUsers;
 MongoClient.connect(MONGO_URI, { useUnifiedTopology: true })
     .then(client => {
         console.log('Conectado a MongoDB');
         db = client.db('ArtiSound'); // Base de datos llamada "ArtiSound"
         users = db.collection('users');
+        googleUsers = db.collection('google_users');
     })
     .catch(error => console.error('Error al conectar a MongoDB:', error));
 
@@ -123,19 +125,49 @@ app.post('/emailRegister', async (req, res) => {
         return res.status(400).send({'response':'Por favor, ingresa los datos requeridos'});
     }
     try {
-        const user = await users.findOne({ email: email });
+        const user = await googleUsers.findOne({ email: email });
         if (user) {
             return res.status(400).send({ 'response': 'Usuario ya registrado.' });
         }
         // Hash de la contraseña
         let hashedPwd = await encryptPwd(password);
         // Inserción en la base de datos
-        const result = await users.insertOne({
+        const result = await googleUsers.insertOne({
             email: email,
             password: hashedPwd,
             firstName: firstName,
             lastName: lastName,
             phone: phone
+        });
+
+        // Respuesta de éxito
+        res.status(201).send({
+            'id': result.insertedId
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({'response':'Error al realizar el registro'});
+    }
+});
+
+
+// Ruta para registro con email
+app.post('/emailGoogle', async (req, res) => {
+    const { email, name } = req.body;
+
+    if (!email || !name) {
+        return res.status(400).send({'response':'Por favor, ingresa los datos requeridos'});
+    }
+    try {
+        const user = await users.findOne({ email: email });
+        if (user) {
+            return res.status(200).send({ 'id': user.id });
+        }
+        // Inserción en la base de datos
+        const result = await users.insertOne({
+            email: email,
+            name: name
         });
 
         // Respuesta de éxito
